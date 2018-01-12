@@ -1,19 +1,17 @@
 const path = require("path");
-const webpack = require('webpack');
-const ExtractTextPlugin = require('extract-text-webpack-plugin'); //独立打包css模块;
-const OptimizeCssAssetsPlugin = require('optimize-css-assets-webpack-plugin'); //压缩CSS模块;
+const webpack = require("webpack");
+const ExtractTextPlugin = require("extract-text-webpack-plugin"); //独立打包css模块;
+const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin"); //压缩CSS模块;
 entry = {};
 entry["main"] = "./src/main.jsx";
 entry[0] = "webpack-dev-server/client?http://localhost:3000";
 entry[1] = "webpack/hot/only-dev-server";
+// entry[1] = "webpack-hot-middleware/client";
 module.exports = {
     entry: entry,
     output: {
-        //输出设定
-        // path: __dirname + "/build",
-        // filename: "bundle.js"
-        path: path.join(__dirname, "dist"), // 将构建打包输出的main.js放到build目录下
-        // 可以对构建输出的main.js进行二次定制化命名，比如加时间戳等
+        path: path.join(__dirname, "dist"), // 将构建打包输出的app.js放到build目录下
+        // 可以对构建输出的app.js进行二次定制化命名，比如加时间戳等
         filename: "[name].js",
         // webpack构建输出的临时文件存放到内存中，而且是以publicPath作为相对路径。
         // publicPath并不会影响输出目录
@@ -91,6 +89,7 @@ module.exports = {
             disable: false,
             allChunks: true
         }),
+        //压缩css（注:因为没有用style-loader打包到js里所以webpack.optimize.UglifyJsPlugin的压缩本身对独立css不管用）;
         new OptimizeCssAssetsPlugin({
             assetNameRegExp: /\.css$/g, //正则匹配后缀.css文件;
             cssProcessor: require("cssnano"), //加载‘cssnano’css优化插件;

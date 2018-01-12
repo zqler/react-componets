@@ -7,13 +7,7 @@ const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPl
 module.exports = {
     entry: {
         main: "./src/main.jsx",
-        vendor: [
-                "react",
-                "react-dom",
-                "react-router-dom",
-                "moment",
-                "whatwg-fetch"
-            ]
+        vendor: ["react", "react-dom", "react-router-dom", "moment", "whatwg-fetch"]
             //分离外部引入插件
     },
     output: {
@@ -43,8 +37,6 @@ module.exports = {
                                 importLoaders: 1
                             }
                         },
-                        "resolve-url-loader",
-                        "sass-loader?sourceMap",
                         {
                             loader: "postcss-loader", //自动补全css浏览器前缀
                             options: {
@@ -55,7 +47,9 @@ module.exports = {
                                     ];
                                 }
                             }
-                        }
+                        },
+                        "resolve-url-loader",
+                        "sass-loader?sourceMap"
                     ],
                     publicPath: "./" //修改css中如背景图片的路径引用
                 })
@@ -98,7 +92,7 @@ module.exports = {
             disable: false,
             allChunks: true
         }),
-        //压缩css（注:因为没有用style-loader打包到js里所以webpack.optimize.UglifyJsPlugin的压缩本身对独立css不管用）;
+        //压缩css;
         new OptimizeCssAssetsPlugin({
             assetNameRegExp: /\.css$/g, //正则匹配后缀.css文件;
             cssProcessor: require("cssnano"), //加载‘cssnano’css优化插件;

@@ -4,11 +4,13 @@ const config = require("./webpack.config.debug");
 new WebpackDevServer(webpack(config), {
     publicPath: config.output.publicPath,
     hot: true,
+    inline: true,
+    progress: true,
     historyApiFallback: true,
     disableHostCheck: true
         // proxy: {
-        //     '/manhour': {
-        //         target: 'http://10.112.75.15',//代理配置
+        //     '/api': {    //项目可以用的接口
+        //         target: '******',//代理配置接口地址
         //         secure: false,
         //         changeOrigin: true,
         //         // pathRewrite: {'^/manhour' : ''},
