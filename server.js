@@ -3,14 +3,12 @@ const WebpackDevServer = require("webpack-dev-server");
 const config = require("./webpack.config.debug");
 new WebpackDevServer(webpack(config), {
     publicPath: config.output.publicPath,
-    hot: true,
     inline: true,
     progress: true,
     compress: true,
     quiet: false,
     noInfo: false,
     open: true,
-    lazy: false,
     stats: { colors: true },
     watchOptions: {
         aggregateTimeout: 300,

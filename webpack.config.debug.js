@@ -6,7 +6,7 @@ entry = {};
 entry["main"] = "./src/index.jsx";
 //webpack-dev-server 配置
 entry[0] = "webpack-dev-server/client?http://localhost:3000";
-entry[1] = "webpack/hot/only-dev-server";
+
 //webpack-dev-middleware
 // entry[0] = 'webpack-hot-middleware/client?path=/__what&timeout=2000&overlay=false';
 module.exports = {
