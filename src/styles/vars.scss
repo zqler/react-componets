@@ -1,0 +1,55 @@
+$border-color:#e8e8e8;
+$zIndex: 100;
+/*color**/
+
+$primary-color:#1890ff;
+$gray-color:#757575;
+$success-color:#13ce66;
+$warning-color:#FFB000;
+$danger-color:#F5344B;
+$white-color:#fff;
+/**font size*/
+
+$font-size: 14px;
+$font-size-large: 16px;
+/**font color*/
+
+$font-color: #333;
+$font-color-major:#555;
+$font-color-minor:#999;
+$font-color-title:#666;
+$font-color-info:#B0B0B0;
+$btn-disable-color: rgba(0, 0, 0, .25);
+$btn-disable-bg: #f7f7f7;
+$btn-disable-border: #d9d9d9;
+$btn-border-radius:3px;
+$btn-padding-base:0 12px;
+//translate
+$translate-base:all 0.3s;
+/**page size*/
+
+$space-base:6px;
+$spacex2:12px;
+$spacex4:24px;
+$spacex3:18px;
+$spacex5:30px;
+$spacex6:36px;
+/** layout*/
+
+$row: row;
+$col: col;
+$screen-sm-min: 768px;
+$screen-md-min: 992px;
+$screen-lg-min: 1200px;
+$gird-span: 24;
+/**menu*/
+
+$menu-zIndex: ($zIndex + 1000);
+$menu-v-width: 240px;
+$menu-light-font-color: $font-color;
+$menu-light-bg: $white-color;
+$menu-dark-bg: tint(#001529, 6%);
+$menu-dark-font-color: shade($white-color, 20%);
+$menu-base-height: 40px;
+$menu-horizontal-height:60px;
+$menu-horizontal-min-width:100px;

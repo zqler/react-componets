@@ -1,0 +1,55 @@
+/*
+ * @Author: zqler 
+ * @Date: 2018-05-16 15:51:11 
+ * @Last Modified by: zqler
+ * @Last Modified time: 2018-05-16 16:06:27
+ */
+ 
+@mixin button-raduis($border-radius){
+  border-radius: $border-radius;
+}
+
+@mixin button-size($padding, $font-size, $hight) {
+  padding: $padding;
+  font-size: $font-size;
+  line-height: ($hight - 2);
+}
+
+@mixin button-color($color, $background, $border) {
+  color: $color;
+  background-color: $background;
+  border-color: $border;
+}
+
+@mixin button-variant($color, $background, $border) {
+  @include button-color($color, $background, $border);
+  &.btn-loaded,
+  &.btn-loaded:hover
+  {
+    @include button-color(shade($color, 10%), shade($background, 10%), shade($background, 10%));
+  }
+
+  &:hover
+  &:active,
+  &.btn-active {
+    @include button-color(shade($color, 5%), shade($background, 5%), shade($background, 5%));
+  }
+}
+
+@mixin button-text($color){
+  &.btn-text{
+    @include button-color($color, transparent, transparent);
+    &:hover
+    &:active,
+    &.btn-active {
+      @include button-color(shade($color, 10%), transparent, transparent);
+    }
+  }
+}
+@mixin button-fatory($color, $background, $border){
+  @include button-variant($color, $background, $border);
+  &.btn-ghost{
+    @include button-variant($background, $white-color, $background);
+  }
+  @include button-text($background);
+}
