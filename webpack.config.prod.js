@@ -6,7 +6,7 @@ const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin"); /
 const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin; //打包组成部分分析
 module.exports = {
     entry: {
-        main: "./src/main.jsx",
+        main: "./src/index.jsx",
         vendor: ["react", "react-dom", "react-router-dom", "moment", "whatwg-fetch"]
             //分离外部引入插件
     },
@@ -17,7 +17,7 @@ module.exports = {
         chunkFilename: "[name].[chunkhash:5].js"
     },
     resolve: {
-        extensions: [".js", ".jsx"]
+        extensions: [".js", ".jsx",".scss"]
     },
     module: {
         rules: [{

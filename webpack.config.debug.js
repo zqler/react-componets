@@ -3,10 +3,12 @@ const webpack = require("webpack");
 const ExtractTextPlugin = require("extract-text-webpack-plugin"); //独立打包css模块;
 const OptimizeCssAssetsPlugin = require("optimize-css-assets-webpack-plugin"); //压缩CSS模块;
 entry = {};
-entry["main"] = "./src/main.jsx";
+entry["main"] = "./src/index.jsx";
+//webpack-dev-server 配置
 entry[0] = "webpack-dev-server/client?http://localhost:3000";
 entry[1] = "webpack/hot/only-dev-server";
-// entry[1] = "webpack-hot-middleware/client";
+//webpack-dev-middleware
+// entry[0] = 'webpack-hot-middleware/client?path=/__what&timeout=2000&overlay=false';
 module.exports = {
     entry: entry,
     output: {
@@ -20,7 +22,8 @@ module.exports = {
         chunkFilename: "[name].[chunkhash:5].js"
     },
     module: {
-        rules: [{
+        rules: [
+            {
                 test: /\.jsx|js$/,
                 exclude: /(node_modules)/,
                 use: [{
@@ -28,14 +31,16 @@ module.exports = {
                 }]
             },
             {
-                test: /\.css|scss$/,
+                test: /\.(scss|css)$/,
                 use: ExtractTextPlugin.extract({
                     fallback: "style-loader",
                     use: [{
+                                // loader: "css-loader?modules&localIdentName=[name]__[local]-[hash:base64:5]'",
                                 loader: "css-loader",
                                 options: {
                                     importLoaders: 1
                                 }
+
                             },
                             "resolve-url-loader",
                             "sass-loader?sourceMap",
@@ -45,7 +50,7 @@ module.exports = {
                                     sourceMap: true,
                                     plugins: function() {
                                         return [
-                                            require("autoprefixer")({ browsers: ["last 40 versions"] })
+                                            require("autoprefixer")({ browsers: ["last 4 versions"] })
                                         ];
                                     }
                                 }
@@ -69,11 +74,27 @@ module.exports = {
                         loader: "img-loader?minimize&optimizationLevel=5&progressive=true"
                     }
                 ]
-            }
+            },
+              {
+                test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+                loader: 'url-loader',
+                options: {
+                  limit: 10000,
+                  name: 'media/[name].[hash:8].[ext]'
+                }
+              },
+              {
+                test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
+                loader: 'url-loader',
+                options: {
+                  limit: 10000,
+                  name: 'fonts/[name].[hash:8].[ext]'
+                }
+              }
         ]
     },
     resolve: {
-        extensions: [".js", ".jsx"]
+        extensions: [".js", ".jsx","json","scss"]
     },
     plugins: [
         new webpack.HotModuleReplacementPlugin(), //热加载
